@@ -150,6 +150,8 @@ function doLogin($username, $password)
 					echo "User Authenicated".PHP_EOL;
 					// $cookie = setcookie($row['usersUid'], hash("sha256",$row['usersPwd']), time()+60*60);
 					// Above code is incorrect. You need to use Javascript in Browser side
+					$sessionId = hash("sha256",$row['usersPwd']),
+					$queryy = "INSERT INTO users (usersName
 					// return 1;
 				}
 				else{
