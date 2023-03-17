@@ -131,42 +131,6 @@ function loginUser($conn, $username, $pwd) {
 	}
 }
 
-// doLogin v2 code 
-function doLogin($username, $password)
-{
-    $query = "SELECT * FROM users WHERE usersUid='$username' AND usersPwd='$password'";
-    $result = mysqli_query(dbConnection(), $query);
-    if($result){
-		if($result->num_rows == 0){
-			echo("No users in table.");
-			// $event = date("Y-m-d") . "  " . date("h:i:sa") . " [ DB ] " . "ERROR: this user does not exist: $username" . "\n";
-	                // log_event($event);
-			return false;
-		}
-		else {
-			while($row = $result->fetch_assoc()){
-				// $h_password = generateHash($password);
-				if ($row['usersPwd'] == $password){
-					echo "User Authenicated".PHP_EOL;
-					// $cookie = setcookie($row['usersUid'], hash("sha256",$row['usersPwd']), time()+60*60);
-					// Above code is incorrect. You need to use Javascript in Browser side
-					
-					$sessionId = hash("sha256",$row['usersPwd']),
-					$queryy = "INSERT INTO users_session(Sessionid, userName) VALUES ($sessionId, $username);";
-					$resultt = mysqli_query(dbConnection(), $queryy);
-
-					return $sessionId;
-				}
-				else{
-					// $event = date("Y-m-d") . "  " . date("h:i:sa") . " [ DB ] " . "ERROR: Username & Password do not match" . "\n";
-			                // log_event($event);
-					return 0;
-				}
-			}
-		}
-	}
-}
-
     
 
 	
