@@ -137,6 +137,23 @@ section {
   cursor: pointer;
 }
 
+/*Wrapper content for Add Post form */ 
+.wrapper .post-wrapper {
+  display: flex;
+  height: calc(100% - 66px);
+}
+
+.post-wrapper .post-content {
+  flex: 8;
+  height: 100%;
+  padding: 40px 100px 100px;
+  overflow-y: scroll;
+}
+.post-content .page-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 footer {
     position: fixed;
     background-color: #1E293B;
