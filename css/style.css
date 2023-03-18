@@ -1,8 +1,10 @@
+/* 
 body {
   background-color: #333333;
 }
-
+*/
 .wrapper {
+  background-color: #333333;
   width: 900px;
   margin: 0 auto;
 }
