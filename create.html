@@ -1,107 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Add Post</title>
-    <!--I won't do more than barebone HTML, since this isn't an HTML tutorial.-->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
+<html lang="en">
 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Find Blogs</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Services
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="americanmeal.html">Create a Food Post!</a></li>
-                                <li><a class="dropdown-item" href="algerianmeal.html">Algerian</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-<!--A quick wrapper to align the content (ends in footer.php)-->
-	<div class="wrapper">
-	<div class="post-wrapper">
-		<div class="post-content">
-            <div class="button-group">
-                <a href="create.html" class="btn btn-big">Add Post</a>
-                <a href="index.html" class="btn btn-big">Manage Posts</a>
-            </div>
-
-            <div class="content">
-
-                <h2 class="page-title">Manage Posts</h2>
-
-                <form action="create.html" method="post">
-                    <div>
-                        <label>Title</label>
-                        <input type="text" name="title" class="text-input">
-                    </div>
-                    <div>
-                        <label>Body</label>
-                        <textarea name="body" id="body"></textarea>
-                    </div>
-                    <div>
-                        <label>Image</label>
-                        <input type="file" name="image" class="text-input">
-                    </div>
-                    <div>
-                        <label>Topic</label>
-                        <select name="topic" class="text-input">
-                            <option value="Poetry">Poetry</option>
-                            <option value="Life Lessons">Life Lessons</option>
-                        </select>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-big">Add Post</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-	</div>
- </div>
-  <footer>
-    <p>&copy; CompileCart, 2023. |  Terms Of Use  |  Privacy Statement</p>
-  </footer>
-
-    <!-- Javascript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        <!-- Font Awesome -->
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
             crossorigin="anonymous">
-    </script>
-    
-  </body>
-<script src="js/script.js"></script>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Candal|Lora"
+            rel="stylesheet">
+
+        <!-- Custom Styling -->
+        <link rel="stylesheet" href="../../css/style.css">
+
+        <!-- Admin Styling -->
+        <link rel="stylesheet" href="../../css/admin.css">
+
+        <title>Admin Section - Add Post</title>
+    </head>
+
+    <body>
+		<header>
+			<div class="logo">
+				<h1 class="logo-text"><span>Compile</span>Cart</h1>
+			</div>
+			<i class="fa fa-bars menu-toggle"></i>
+			<ul class="nav">
+				<li><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li>
+					<a href="#">Services
+						<i class="fa fa-chevron-down" style="font-size: .8em;"></i>
+					</a>
+					<ul>
+						<li><a href="#">Create Food Post!</a></li>
+					</ul>
+				</li>
+			</ul>
+		</header>
+        <!-- Admin Page Wrapper -->
+        <div class="admin-wrapper">
+
+            <!-- Left Sidebar 
+            <div class="left-sidebar">
+                <ul>
+                    <li><a href="index.html">Manage Posts</a></li>
+                    <li><a href="../users/index.html">Manage Users</a></li>
+                    <li><a href="../topics/index.html">Manage Topics</a></li>
+                </ul>
+            </div>
+            -->
+
+
+            <!-- Admin Content -->
+            <div class="admin-content">
+                <div class="button-group">
+                    <a href="create.html" class="btn btn-big">Add Post</a>
+                    <a href="index.html" class="btn btn-big">Manage Posts</a>
+                </div>
+
+
+                <div class="content">
+
+                    <h2 class="page-title">Manage Posts</h2>
+
+                    <form action="create.html" method="post">
+                        <div>
+                            <label>Title</label>
+                            <input type="text" name="title" class="text-input">
+                        </div>
+                        <div>
+                            <label>Body</label>
+                            <textarea name="body" id="body"></textarea>
+                        </div>
+                        <div>
+                            <label>Image</label>
+                            <input type="file" name="image" class="text-input">
+                        </div>
+                        <div>
+                            <label>Topic</label>
+                            <select name="topic" class="text-input">
+                                <option value="Poetry">Poetry</option>
+                                <option value="Life Lessons">Life Lessons</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-big">Add Post</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+            <!-- // Admin Content -->
+
+        </div>
+        <!-- // Page Wrapper -->
+
+
+
+        <!-- JQuery -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Ckeditor -->
+        <script
+            src="https://cdn.ckeditor.com/ckeditor5/12.2.0/classic/ckeditor.js"></script>
+        <!-- Custom Script -->
+        <script src="../../js/scripts.js"></script>
+
+    </body>
 
 </html>
