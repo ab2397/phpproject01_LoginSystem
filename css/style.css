@@ -141,6 +141,7 @@ section {
 .wrapper .post-wrapper {
   display: flex;
   height: calc(100% - 66px);
+  background-color: #fff;
 }
 
 .post-wrapper .post-content {
