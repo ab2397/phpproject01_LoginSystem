@@ -386,11 +386,11 @@ header .menu-toggle {
 
 /* ADMIN CONTENT */
 .admin-wrapper {
-  display: flex;
+  /* display: flex; */
   height: calc(100% - 66px);
 }
 .admin-wrapper .admin-content {
-  flex: 8;
+  /* flex: 8; */
   height: 100%;
   padding: 40px 100px 100px;
   overflow-y: scroll;
@@ -428,33 +428,6 @@ form div {
 
 .auth-content form p a {
   text-decoration: underline;
-}
-
-/* sign up */
-
-.signup-form-form {
-  display: flex;
-  justify-content: center;
-}
-
-.signup-form p {
-  text-align: center;
-  padding-bottom: 40px;
-  color: #007ecc;
-}
-
-
-.signup-form input {
-  width: calc(100% - 16px);
-  padding: 6px;
-  margin-bottom: 4px;
-}
-
-.signup-form button {
-  display: block;
-  padding: 10px 20px;
-  margin: 10px auto;
-  cursor: pointer;
 }
 
 /* FOOTER */
