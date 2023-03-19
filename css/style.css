@@ -386,11 +386,9 @@ header .menu-toggle {
 
 /* ADMIN CONTENT */
 .admin-wrapper {
-  /* display: flex; */
   height: calc(100% - 66px);
 }
 .admin-wrapper .admin-content {
-  /* flex: 8; */
   height: 100%;
   padding: 40px 100px 100px;
   overflow-y: scroll;
