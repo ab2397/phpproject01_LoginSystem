@@ -47,34 +47,39 @@
 
   <div class="auth-content">
 
-    <form action="register.html" method="post">
+    <!-- <form action="register.html" method="post"> -->
+	<section class="signup-form">
       <h2 class="form-title">Register</h2>
 
       <!-- <div class="msg error">
         <li>Username required</li>
       </div> -->
 
-      <div>
-        <label>Username</label>
-        <input type="text" name="username" class="text-input">
+	  <div>
+        <label>Full Name</label>
+        <input type="text" id="ajaxTextName" class="text-input">
       </div>
       <div>
         <label>Email</label>
-        <input type="email" name="email" class="text-input">
+        <input type="email" id="ajaxTextEmail" class="text-input">
+      </div>
+	  <div>
+        <label>Username</label>
+        <input type="text" id="ajaxTextUser" class="text-input">
       </div>
       <div>
         <label>Password</label>
-        <input type="password" name="password" class="text-input">
+        <input type="password" id="ajaxTextPwd" class="text-input">
       </div>
       <div>
         <label>Password Confirmation</label>
-        <input type="password" name="passwordConf" class="text-input">
+        <input type="password" id="ajaxTextRptPwd" class="text-input">
       </div>
       <div>
-        <button type="submit" name="register-btn" class="btn btn-big">Register</button>
+        <button type="submit" id="ajaxButton" class="btn btn-big">Register</button>
       </div>
       <p>Or <a href="login.html">Sign In</a></p>
-    </form>
+    </section>
 
   </div>
 
