@@ -416,15 +416,15 @@ form div {
   text-align: center;
 }
 
-.auth-content form div {
+.auth-content .signup-form div {
   margin-bottom: 10px;
 }
 
-.auth-content form p {
+.auth-content .signup-form p {
   text-align: center;
 }
 
-.auth-content form p a {
+.auth-content .signup-form p a {
   text-decoration: underline;
 }
 
