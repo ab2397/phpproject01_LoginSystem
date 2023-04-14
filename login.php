@@ -1,29 +1,46 @@
-<?php
-  include_once 'header.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
 
-<section class="signup-form">
-  <h2>Log In</h2>
-  <div class="signup-form-form">
-    <form action="includes/login.inc.php" method="post">
-      <input type="text" name="uid" placeholder="Username/Email...">
-      <input type="password" name="pwd" placeholder="Password...">
-      <button type="submit" name="submit">Sign up</button>
-    </form>
+    <head>
+        <title>Sign In</title>
+        <?php
+			include_once 'header.php';
+		?>
+
+  <div class="auth-content">
+
+    <!-- <form action="register.html" method="post"> -->
+	<section class="signup-form">
+      <h2 class="form-title">Login</h2>
+
+      <!-- <div class="msg error">
+        <li>Username required</li>
+      </div> -->
+
+	  <div>
+        <label>Username</label>
+        <input type="text" id="ajaxTextUser" class="text-input">
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" id="ajaxTextPwd" class="text-input">
+      </div>
+      <div>
+        <button type="submit" id="ajaxButton" class="btn btn-big">Log In</button>
+      </div>
+      <p>Don't have an account? <a href="signup.php">Sign up</a></p>
+    </section>
+
   </div>
-  <?php
-    // Error messages
-    if (isset($_GET["error"])) {
-      if ($_GET["error"] == "emptyinput") {
-        echo "<p>Fill in all fields!</p>";
-      }
-      else if ($_GET["error"] == "wronglogin") {
-        echo "<p>Wrong login!</p>";
-      }
-    }
-  ?>
-</section>
 
-<?php
-  include_once 'footer.php';
-?>
+  <!-- // Page Wrapper -->
+ 	<?php
+		include_once 'footer.php';
+	?>
+<script>
+  document.getElementById("ajaxButton").addEventListener('click', function() {
+    const userName = document.getElementById("ajaxTextUser").value;
+    const passWord = document.getElementById("ajaxTextPwd").value;
+    SendLoginRequest(userName,passWord); }, false);
+</script>
+</html>

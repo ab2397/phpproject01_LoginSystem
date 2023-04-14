@@ -1,22 +1,197 @@
-// Change nav menu color if on that page!
-let pageUrl = window.location.pathname;
-let getNav = document.querySelectorAll("nav div ul li a");
+$(document).ready(function() {
+  $(".menu-toggle").on("click", function() {
+    $(".nav").toggleClass("showing");
+    $(".nav ul").toggleClass("showing");
+  });
+  /*
+  //Abdelmalek: This is for a Carousel from the original code that I removed
+  $(".post-wrapper").slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    nextArrow: $(".next"),
+    prevArrow: $(".prev"),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+      // You can unslick at a given breakpoint now by adding:
+      // settings: "unslick"
+      // instead of a settings object
+    ]
+  });
+*/
+});
 
-for (let i = 0; i < getNav.length; i++) {
-  // Get URL info
-  let pageUrlName = pageUrl.split("/");
-  let pageUrlLength = pageUrlName.length - 1;
-  // Get links info
-  let pageNav = getNav[i].pathname;
-  let pageNavName = pageNav.split("/");
-  let pageNavLength = pageNavName.length - 1;
-  let pageFinalName = pageNavName[pageNavLength];
-  let pageNavExists = pageUrl.includes(pageFinalName);
-  // Change links color
-  if (pageNavExists == true) {
-    getNav[i].style.cssText = "color: #31a6ff;";
+function setCookie(cusername, csessionvalue, exminutes) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exminutes*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  // document.cookie = '"' + cname + '=' + cvalue + ';' + expires + ';path=/"';
+  document.cookie = 'username=' + cusername + ';' + expires + ';path=/';
+
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
   }
-  else if (pageUrlName[pageUrlLength] == "") {
-    getNav[0].style.cssText = "color: #31a6ff;";
+  return "";
+}
+
+function HandleLoginResponse(response)
+{
+  if(response == 0) {
+    alert("Login Fail.")
+  }
+  else if(response == 1) {
+    alert("Session ID has been generated. Login again.")
+  }
+  else{
+    alert("Login Sucessful!");
+    const myObj = JSON.parse(response);
+    var name = myObj.username;
+    var session = myObj.sessionId;
+    var exp = 10;
+    setCookie(name,session,exp);
   }
 }
+
+function SendLoginRequest(username,password)
+{
+  var request = new XMLHttpRequest();
+  request.open("POST","../includes/login.inc.php",true);
+  request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  request.onreadystatechange= function ()
+  {
+
+    if (this.status == 200)
+    {
+      HandleLoginResponse(this.responseText);
+    }
+    else {
+      alert("There was an issue with the request.");
+    }
+  }
+  request.send("type=login&uname="+username+"&pword="+password);
+}
+
+function HandleSignupResponse(response)
+{
+  if(response == 0) {
+    alert("Signup Fail.")
+  }
+  else{
+    alert("Signup Sucessful! You can now login.");
+  }
+}
+
+function SendSignupRequest(name,email,username,password,passwordrpt)
+{
+  var request = new XMLHttpRequest();
+  request.open("POST","includes/signup.inc.php",true);
+  request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  request.onreadystatechange= function ()
+  {
+
+    if (this.status == 200)
+    {
+      HandleSignupResponse(this.responseText);
+    }
+    else {
+      alert("There was an issue with the request.");
+    }
+  }
+  request.send("type=signup&name="+name+"&email="+email+"&uname="+username+"&pword="+password+"&rptpword="+passwordrpt);
+}
+
+function HandleBlogPostResponse(response)
+{
+  if(response == 0) {
+    alert("Failed to Create Blog Post.")
+  }
+  else{
+    alert("Blog Post was maded!");
+  }
+}
+
+function SendBlogPostRequest(title,body)
+{
+  var request = new XMLHttpRequest();
+  request.open("POST","includes/addpost.inc.php",true);
+  request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+  request.onreadystatechange= function ()
+  {
+
+    if (this.status == 200)
+    {
+      HandleSignupResponse(this.responseText);
+    }
+    else {
+      alert("There was an issue with the request.");
+    }
+  }
+  request.send("type=post&title="+title+"&body="+body);
+}
+
+// Abdelmalek: This is for the create blog post page
+ClassicEditor.create(document.querySelector("#body"), {
+  toolbar: [
+    "heading",
+    "|",
+    "bold",
+    "italic",
+    "link",
+    "bulletedList",
+    "numberedList",
+    "blockQuote"
+  ],
+  heading: {
+    options: [
+      { model: "paragraph", title: "Paragraph", class: "ck-heading_paragraph" },
+      {
+        model: "heading1",
+        view: "h1",
+        title: "Heading 1",
+        class: "ck-heading_heading1"
+      },
+      {
+        model: "heading2",
+        view: "h2",
+        title: "Heading 2",
+        class: "ck-heading_heading2"
+      }
+    ]
+  }
+}).catch(error => {
+  console.log(error);
+});

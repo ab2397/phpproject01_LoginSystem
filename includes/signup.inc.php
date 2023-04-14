@@ -1,20 +1,19 @@
 <?php
 
-if (isset($_POST["submit"])) {
-
   // First we get the form data from the URL
   $name = $_POST["name"];
   $email = $_POST["email"];
-  $username = $_POST["uid"];
-  $pwd = $_POST["pwd"];
-  $pwdRepeat = $_POST["pwdrepeat"];
+  $username = $_POST["uname"];
+  $pwd = $_POST["pword"];
+  $pwdRepeat = $_POST["rptpword"];
 
-  // Then we run a bunch of error handlers to catch any user mistakes we can (you can add more than I did)
   // These functions can be found in functions.inc.php
 
   require_once "dbh.inc.php";
   require_once 'functions.inc.php';
-
+  // Abdelmalek: These handlers are obsolete. Ignore them when developing blog
+  // Due to this, signing up as the same user has NOT been tested
+/*
   // Left inputs empty
   // We set the functions "!== false" since "=== true" has a risk of giving us the wrong outcome
   if (emptyInputSignup($name, $email, $username, $pwd, $pwdRepeat) !== false) {
@@ -41,13 +40,13 @@ if (isset($_POST["submit"])) {
     header("location: ../signup.php?error=usernametaken");
 		exit();
   }
-
+*/
   // If we get to here, it means there are no user errors
 
   // Now we insert the user into the database
-  createUser($conn, $name, $email, $username, $pwd);
+  $response = return createUser($conn, $name, $email, $username, $pwd);
+  //Abdelmalek: This should send the JSON object return in the function into
+  // the Response header sent through the HTTP Request (See Inspect)
+  // which would be used by the HandleSignupResponse function in script.js
+  echo $response;
 
-} else {
-	header("location: ../signup.php");
-    exit();
-}
